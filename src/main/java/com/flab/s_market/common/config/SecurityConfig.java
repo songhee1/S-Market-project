@@ -1,5 +1,6 @@
 package com.flab.s_market.common.config;
 
+import com.flab.s_market.domains.security.domain.Role;
 import com.flab.s_market.domains.security.service.JwtAuthenticationFilter;
 import com.flab.s_market.domains.security.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +40,8 @@ public class SecurityConfig {
                 // 해당 api에 대해서 모든 사용자 요청을 허가
                 .requestMatchers("/v1/api/user/**").permitAll()
                 // user 권한을 가진 사용자만 허가
-                .requestMatchers("/v1/api/main").hasRole("USER")
+                .requestMatchers("/v1/api/main").permitAll()
+                .requestMatchers("/v1/api/file/**").hasRole(Role.PROVIDER.toString())
                 // 이 밖의 모든 요청에 대해서 인증을 필요
                 .anyRequest().authenticated())
             .addFilterBefore(

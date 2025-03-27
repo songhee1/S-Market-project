@@ -65,8 +65,8 @@ dependencies {
 
 	// https://mvnrepository.com/artifact/com.google.guava/guava
 	implementation group: 'com.google.guava', name: 'guava', version: '33.4.0-jre'
-	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
 
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.5'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
