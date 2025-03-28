@@ -5,6 +5,7 @@ CREATE TABLE `member` (
     `email`	VARCHAR(100)	NOT NULL,
     `name`	VARCHAR(20)	NOT NULL,
     `password`	VARCHAR(255)	NOT NULL,
+    `role` VARCHAR(50) NOT NULL,
     `created_at`	DATETIME	NOT NULL,
     `modified_at`	DATETIME	NOT NULL,
     primary key (id)
@@ -12,10 +13,23 @@ CREATE TABLE `member` (
 
 CREATE UNIQUE INDEX idx_user_email ON member(`email`);
 
+# DROP TABLE IF EXISTS `member_roles`;
+
 CREATE TABLE `member_roles`(
     `member_id` BIGINT NOT NULL,
     `roles` VARCHAR(10) NOT NULL,
     primary key (member_id, roles)
+);
+
+# DROP TABLE IF EXISTS `file_info`;
+CREATE TABLE `file_info`(
+    `id` BIGINT NOT NULL auto_increment,
+    `original_file_name` VARCHAR(50) NOT NULL COMMENT 'UUID 붙이기 전 파일명',
+    `attached_file_name` VARCHAR(50) NOT NULL COMMENT 'UUID 붙여진 파일명',
+    `original_file_path` VARCHAR(50) NOT NULL COMMENT '암호화하기 전 파일경로',
+    `encrypted_file_path` VARCHAR(50) NOT NULL COMMENT '암호화된 파일경로',
+    `product_id` BIGINT NULL,
+    primary key (id)
 );
 
 # DROP TABLE IF EXISTS `term`;

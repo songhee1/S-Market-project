@@ -52,3 +52,8 @@ jasypt:
 songhee:
   upload:
     path: /Users/user/Desktop/files/
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.web.access: DEBUG

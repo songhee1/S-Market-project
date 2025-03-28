@@ -1,6 +1,5 @@
 package com.flab.s_market.common.config;
 
-import com.flab.s_market.domains.security.domain.Role;
 import com.flab.s_market.domains.security.service.JwtAuthenticationFilter;
 import com.flab.s_market.domains.security.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
     @Bean
-    public BCryptPasswordEncoder encode(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .requestMatchers("/v1/api/user/**").permitAll()
                 // user 권한을 가진 사용자만 허가
                 .requestMatchers("/v1/api/main").permitAll()
-                .requestMatchers("/v1/api/file/**").hasRole(Role.PROVIDER.toString())
+                .requestMatchers("/v1/api/file/**").hasAnyRole("PROVIDER", "ADMIN")
                 // 이 밖의 모든 요청에 대해서 인증을 필요
                 .anyRequest().authenticated())
             .addFilterBefore(
