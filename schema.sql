@@ -24,10 +24,10 @@ CREATE TABLE `member_roles`(
 # DROP TABLE IF EXISTS `file_info`;
 CREATE TABLE `file_info`(
     `id` BIGINT NOT NULL auto_increment,
-    `original_file_name` VARCHAR(50) NOT NULL COMMENT 'UUID 붙이기 전 파일명',
-    `attached_file_name` VARCHAR(50) NOT NULL COMMENT 'UUID 붙여진 파일명',
-    `original_file_path` VARCHAR(50) NOT NULL COMMENT '암호화하기 전 파일경로',
-    `encrypted_file_path` VARCHAR(50) NOT NULL COMMENT '암호화된 파일경로',
+    `original_file_name` VARCHAR(100) NOT NULL COMMENT 'UUID 붙이기 전 파일명',
+    `attached_file_name` VARCHAR(100) NOT NULL COMMENT 'UUID 붙여진 파일명',
+    `original_file_path` VARCHAR(255) NOT NULL COMMENT '암호화하기 전 파일경로',
+    `encrypted_file_path` VARCHAR(255) NOT NULL COMMENT '암호화된 파일경로',
     `product_id` BIGINT NULL,
     primary key (id)
 );

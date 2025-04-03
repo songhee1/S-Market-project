@@ -28,13 +28,13 @@ public class FileInfo {
     @Column(nullable = false, length = 100)
     private String originalFileName;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String attachedFileName;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 255)
     private String originalFilePath;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 255)
     private String encryptedFilePath;
 
     @ManyToOne(fetch = FetchType.LAZY)
