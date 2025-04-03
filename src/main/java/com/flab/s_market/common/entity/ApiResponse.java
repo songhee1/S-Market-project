@@ -23,7 +23,7 @@ public class ApiResponse <T>{
     }
 
     public static ApiResponse<?> createFail(final CustomException e){
-        return new ApiResponse<>(e.getErrorCode().getCode(), e.getMessage());
+        return new ApiResponse<>(e.getErrorCode().getCode(), e.getErrorCode().getExternalMessage());
     }
 
     public static ApiResponse<?> createFailWithErrorMessage(final String errorMessage){
