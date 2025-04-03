@@ -22,7 +22,7 @@ public class FileInfoService {
     private final EncryptionService encryptionService;
 
     @Value("${songhee.upload.path}")
-    private static String uploadPath;
+    private String uploadPath;
 
     public List<AttachedFileDTO> fileAttached(MultipartFile[] multipartFiles) throws IOException {
 
@@ -36,9 +36,8 @@ public class FileInfoService {
             String uuid = UUID.randomUUID().toString();
 
             assert originalName != null;
-            String extensionName = originalName.substring(originalName.lastIndexOf("."));
 
-            String attachedName = originalName + '_' + uuid + extensionName;
+            String attachedName = uuid + "_" + originalName;
             String folderPath = makeFolder();
 
             String attachedPath = uploadPath + folderPath + attachedName;
@@ -66,7 +65,7 @@ public class FileInfoService {
 
         File uploadPathFolder = new File(uploadPath, folderPath);
 
-        if(uploadPathFolder.exists()){
+        if(!uploadPathFolder.exists()){
             uploadPathFolder.mkdirs();
         }
         return folderPath;
